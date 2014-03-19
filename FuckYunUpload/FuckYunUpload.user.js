@@ -6,7 +6,6 @@
 // @version     1
 // @grant       none
 // @require     jquery-1.11.0.min.js
-// @require     ymPrompt.js
 // ==/UserScript==
 this.$ = this.jQuery = jQuery.noConflict(true);
 $(function(){
