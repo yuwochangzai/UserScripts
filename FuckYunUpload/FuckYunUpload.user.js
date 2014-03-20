@@ -2,7 +2,7 @@
 // @name        FuckYunUpload
 // @namespace   UserScripts
 // @description FuckYunUpload
-// @include     http://www.yunupload.net/*
+// @match     http://www.yunupload.net/*
 // @version     0.1
 // @grant       none
 // @require     http://code.jquery.com/jquery-1.11.0.min.js
