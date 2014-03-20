@@ -5,7 +5,7 @@
 // @include     http://www.yunupload.net/*
 // @version     1
 // @grant       none
-// @require     jquery-1.11.0.min.js
+// @require     http://code.jquery.com/jquery-1.11.0.min.js
 // ==/UserScript==
 this.$ = this.jQuery = jQuery.noConflict(true);
 $(function(){
