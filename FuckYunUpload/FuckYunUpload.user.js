@@ -35,7 +35,7 @@ function switchMethod(){
 function gotoDownLoadPage() {
     clearInterval(timer1);
         redirectdown();//调用原页面函数，位于: yunupload.net/f/...html  http://www.yunupload.net/f/bf00e3ff82acc83c.html  
-        alert('跳转到下载页面..');
+        alert('马上跳转到下载页面..');
 }
 /**
  * 清除页面垃圾
