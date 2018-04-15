@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         lagouhelper
 // @namespace    http://tampermonkey.net/
-// @version      0.1
+// @version      0.1.1
 // @description  拉勾自定义标记
 // @author       hujun
 // @match        https://www.lagou.com/*
@@ -57,6 +57,13 @@ var markHelper={
         }
         return null;
     },
+    removeMark:function(oldCompany){
+        if(oldCompany){
+            delete markHelper.markJsonObject[oldCompany];
+        }
+        //保存到cookie
+        cookieHelper.setCookie('lagouhelperusermark',JSON.stringify(markHelper.markJsonObject),365*10);
+    },
     saveMark:function(oldCompany,newCompany,remark){
         if(oldCompany){
             delete markHelper.markJsonObject[oldCompany];
@@ -76,7 +83,7 @@ function checkCompany(){
         $(this).append('<i><img src="https://www.easyicon.net/api/resizeApi.php?id=1198227&size=24" width="24" alt="标记" title="标记" class="lagouhelper_mark" style="cursor:pointer;"/></i>');
         var mark=markHelper.getMark(company);
         if(mark){
-            $(this).append('<i class="lagouhelper_remark"><font color="red">'+mark.Remark+'！</font></i>');
+            $(this).append('<i class="lagouhelper_remark"><font color="red">'+mark.Remark+'</font></i>');
         }
     });
 }
@@ -91,7 +98,7 @@ function refreshRemark(){
         var mark=markHelper.getMark(company);
         $(this).find('.lagouhelper_remark').remove();
         if(mark){
-            $(this).append('<i class="lagouhelper_remark"><font color="red">'+mark.Remark+'！</font></i>');
+            $(this).append('<i class="lagouhelper_remark"><font color="red">'+mark.Remark+'</font></i>');
         }
     });
 }
@@ -123,10 +130,12 @@ $(function(){
             return;
         }
         if(!remark){
-            alert('备注不能为空或空格');
-            return;
+            markHelper.removeMark(oldCompany);
+            markHelper.removeMark(newCompany);
         }
-        markHelper.saveMark(oldCompany,newCompany,remark);
+        else{
+            markHelper.saveMark(oldCompany,newCompany,remark);
+        }
         $('#lagouhelper_popup_edit').remove();
         refreshRemark();
     })
